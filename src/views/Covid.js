@@ -1,36 +1,12 @@
-import axios from "axios";
 import React, { useEffect, useState } from "react";
-import moment from "moment";
+import useFetch from "../Fetch/Fetch";
+
 
 const Covid = () => {
-  const [dataCovid, setDataCovid] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [isError, setIsError] = useState(false);
-  useEffect(() => {
-    try {
-     
-        async function myapi() {
-          let res = await axios.get(
-            "https://api.covid19api.com/country//vietnam?from=2022-04-15T00:00:00Z&to=2022-05-02T00:00:00Z"
-          );
-          let data = res && res.data ? res.data : [];
-          if (data && data.length > 0) {
-            data.map((item) => {
-              item.Date = moment(item.Date).format("DD/MM/YY");
-              return item;
-            });
-          }
-          setDataCovid(data.reverse());
-          setIsError(false);
-          setLoading(false);
-        }
-        myapi();
-      
-    } catch (e) {
-      setLoading(false);
-      setIsError(true);
-    }
-  }, []);
+
+  const {data:dataCovid,loading,isError} = useFetch("https://api.covid19api.com/country/vietnam?from=2022-04-15T00:00:00Z&to=2022-05-02T00:00:00Z"
+  )
+
   return (
     <>
       <h3 className="py-3">Covid 19 tracking in vietnam </h3>
