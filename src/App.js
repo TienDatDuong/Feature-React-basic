@@ -3,8 +3,12 @@ import "./App.css";
 import Nav from "./views/Nav";
 import { useState } from "react";
 import Covid from "./views/Covid";
-// import Todo from "./views/Todo";
 
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import CountDown from "./CountDown";
+import Todo from "./views/Todo";
+// import Todo from "./views/Todo";
+//  npm install --save-exact react-router-dom@5.3.0
 function App() {
   const [name, setName] = useState("datdt");
   const [address, setAddress] = useState("");
@@ -28,28 +32,41 @@ function App() {
   };
 
   return (
-    <div className="App">
-      <Nav />
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <h1>Hello would with Reqact and {name} !</h1>
-        <Covid/>
-        {/* <Todo
-          todos={todos}
-          Alltodo={"All todos"}
-          deleteDataTodo={deleteDataTodo}
-        />
-        <input
-          type="text"
-          value={address}
-          onChange={(e) => handlerClickinput(e)}
-          className="text-black"
-        />
-        <button type="button" onClick={(e) => handlerSubmit(e)}>
-          ClickMe
-        </button> */}
-      </header>
-    </div>
+    <Router>
+      <div className="bg-indigo-900 h-screen text-white">
+        <div className="App">
+          <Nav />
+          <header className="App-header">
+            <img src={logo} className="App-logo" alt="logo" />
+          </header>
+          <Switch>
+            <Route path="/" exact>
+              <Covid />
+            </Route>
+            <Route path="/timer"  >
+              {/* <Users /> */}
+              <CountDown />
+            </Route>
+            <Route path="/todo" >
+              <Todo
+                todos={todos}
+                Alltodo={"All todos"}
+                deleteDataTodo={deleteDataTodo}
+              />
+              <input
+                type="text"
+                value={address}
+                onChange={(e) => handlerClickinput(e)}
+                className="text-black"
+              />
+              <button type="button" onClick={(e) => handlerSubmit(e)}>
+                ClickMe
+              </button>
+            </Route>
+          </Switch>
+        </div>
+      </div>
+    </Router>
   );
 }
 

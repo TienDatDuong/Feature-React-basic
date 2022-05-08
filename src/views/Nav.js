@@ -1,13 +1,14 @@
 import React from "react";
+import {Link,NavLink} from "react-router-dom"
 function Nav() {
   return (
     <div className="overflow-hidden bg-cyan-400 flex items-start ">
-      <a className="text-white text-center p-4 no-underline text-base hover:text-black hover:bg-white bg-green-400 " href="#home">
+      <NavLink activeClassName="active" className="text-white text-center p-4 no-underline text-base hover:text-black hover:bg-white " to="/" exact>
         Home
-      </a>
-      <a className="text-white text-center p-4 no-underline text-base hover:text-black hover:bg-white" href="#news">News</a>
-      <a className="text-white text-center p-4 no-underline text-base hover:text-black hover:bg-white" href="#contact">Contact</a>
-      <a className="text-white text-center p-4 no-underline text-base hover:text-black hover:bg-white" href="#about">About</a>
+      </NavLink>
+      <NavLink activeClassName="active" className="text-white text-center p-4 no-underline text-base hover:text-black hover:bg-white" to="/timer" exact>Timer Apps</NavLink>
+      <NavLink activeClassName="active" className="text-white text-center p-4 no-underline text-base hover:text-black hover:bg-white" to="/todo" exact>Todo Apps</NavLink>
+      {/* <NavLink activeClassName="active" className="text-white text-center p-4 no-underline text-base hover:text-black hover:bg-white" to="/seccet" exact>Secret</NavLink> */}
     </div>
   );
 }
